@@ -1,5 +1,5 @@
 function copyText() {
-  console.log(document.getElementById("copyTextArea").innerHTML)
+  console.log(document.getElementById("copyTextArea").innerHTML);
   /* Get the text field */
   var copyText = document.getElementById("copyTextArea");
 
@@ -8,10 +8,9 @@ function copyText() {
   copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
   /* Copy the text inside the text field */
-  console.log(copyText.innerHTML)
+  console.log(copyText.innerHTML);
   navigator.clipboard.writeText(copyText.value);
 }
-
 
 function Upload() {
   var fileUpload = document.getElementById("fileUpload");
@@ -40,22 +39,22 @@ function Upload() {
         dvCSV.appendChild(table);
       };
       reader.readAsText(fileUpload.files[0]);
+      //Now From Here The Code Making Part Begins
+      copyCodeElm = document.getElementById("copyCode");
+      setTimeout(readData, 300);
+      //Always At End 🔽
+      copyCodeElm.style.display = "block";
     } else {
       alert("This browser does not support HTML5.");
     }
   } else {
     alert("Please upload a valid CSV file.");
   }
-  //Now From Here The Code Making Part Begins
-  copyCodeElm = document.getElementById("copyCode");
-  setTimeout(readData, 300);
-  //Always At End 🔽
-  copyCodeElm.style.display = "block";
 }
 
 function readData() {
-    //Clearing The Var
-    toShow = ""
+  //Clearing The Var
+  toShow = "";
   //gets table
   var oTable = document.getElementById("myTable");
 
@@ -65,7 +64,7 @@ function readData() {
   //loops through rows
   for (i = 1; i < rowLength; i++) {
     nameOf = [];
-    newName="";
+    newName = "";
     code = "";
     //gets cells of current row
     var oCells = oTable.rows.item(i).cells;
@@ -81,8 +80,13 @@ function readData() {
       console.log(cellVal);
       nameOf.push(cellVal);
     }
-    newName=nameOf[1]+document.getElementById("type").value+'"'
-    code = 'ren "'+nameOf[0].replace(" ","")+'" "'+newName.replace(/[\r\n]+/g,"")+'\r\n';
+    newName = nameOf[1] + document.getElementById("type").value + '"';
+    code =
+      'ren "' +
+      nameOf[0].replace(" ", "") +
+      '" "' +
+      newName.replace(/[\r\n]+/g, "") +
+      "\r\n";
     toShow += code;
   }
   document.getElementById("copyTextArea").value = toShow;
