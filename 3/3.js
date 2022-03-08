@@ -38,17 +38,17 @@ function Upload() {
         dvCSV.appendChild(table);
       };
       reader.readAsText(fileUpload.files[0]);
+        //Now From Here The Code Making Part Begins
+  copyCodeElm = document.getElementById("copyCode");
+  setTimeout(readData, 300);
+  //Always At End 🔽
+  copyCodeElm.style.display = "block";
     } else {
       alert("This browser does not support HTML5.");
     }
   } else {
     alert("Please upload a valid CSV file.");
   }
-  //Now From Here The Code Making Part Begins
-  copyCodeElm = document.getElementById("copyCode");
-  setTimeout(readData, 300);
-  //Always At End 🔽
-  copyCodeElm.style.display = "block";
 }
 
 function readData() {
